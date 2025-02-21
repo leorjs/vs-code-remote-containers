@@ -1,160 +1,196 @@
 # Proyecto de Microservicio Flask con Docker y Docker Compose
 
-Este proyecto implementa un entorno de desarrollo seguro y reproducible utilizando Docker, Docker Compose y VS Code Remote Containers. Incluye:
-- Un microservicio desarrollado en Flask.
-- Una base de datos PostgreSQL.
-- Configuración para entornos de desarrollo remotos con VS Code.
+Este proyecto implementa un entorno de desarrollo seguro y reproducible utilizando Docker, Docker Compose y VS Code Remote Containers. El entorno incluye:
+
+- **Microservicio Flask:** Una aplicación desarrollada en Flask.
+- **Base de Datos PostgreSQL:** Para almacenamiento persistente.
+- **Entorno de Desarrollo Remoto:** Configurado con VS Code y Remote Containers.
+
+---
+
+## Tabla de Contenidos
+
+1. [Estructura del Proyecto](#estructura-del-proyecto)
+2. [Implementación Paso a Paso](#implementación-paso-a-paso)
+   - [Configuración Inicial](#configuración-inicial)
+   - [Creación del Dockerfile Seguro](#creación-del-dockerfile-seguro)
+   - [Configuración de VS Code Remote Containers](#configuración-de-vs-code-remote-containers)
+   - [Configuración con Docker Compose](#configuración-con-docker-compose)
+   - [Ejecución y Verificación](#ejecución-y-verificación)
+3. [Flujo de Incorporación y Consumo del Entorno](#flujo-de-incorporación-y-consumo-del-entorno)
+   - [Clonación del Repositorio](#clonación-del-repositorio)
+   - [Instalación de Herramientas Requeridas](#instalación-de-herramientas-requeridas)
+   - [Carga del Entorno de Desarrollo](#carga-del-entorno-de-desarrollo)
+   - [Consumo del Ambiente de Desarrollo](#consumo-del-ambiente-de-desarrollo)
+4. [Flujo Resumido del Proceso de Implementación](#flujo-resumido-del-proceso-de-implementación)
+
+---
 
 ## Estructura del Proyecto
+
 El entorno se compone de:
+
 - **Contenedor de Desarrollo:** Configurado a partir de un `Dockerfile` optimizado y seguro.
-- **VS Code Remote Containers:** Configura el entorno de desarrollo remoto usando el archivo `.devcontainer.json`.
-- **Microservicios:** El entorno puede incluir múltiples contenedores para simular la red de microservicios (por ejemplo, Microservicio 1, Microservicio 2 y una Base de Datos), orquestados mediante Docker Compose.
-- **Seguridad de Red:** Los contenedores estarán configurados para exponer únicamente los puertos necesarios y trabajar en redes aisladas.
+- **VS Code Remote Containers:** Usa el archivo `.devcontainer/devcontainer.json` para definir el entorno remoto.
+- **Microservicios:** Se pueden levantar múltiples contenedores (por ejemplo, Microservicio 1, Microservicio 2 y la Base de Datos), orquestados con Docker Compose.
+- **Seguridad de Red:** Los contenedores exponen únicamente los puertos necesarios y operan en redes aisladas.
 
-## 5. Implementación Paso a Paso
+---
 
-### 5.1. Configuración Inicial
+## Implementación Paso a Paso
+
+### Configuración Inicial
 
 1. **Instalar Docker y Docker Compose:**
-    
-    - Guía de instalación de Docker
-    - Verifica la instalación:
-		docker --version
-		docker-compose --version
+
+   - **Guía de instalación de Docker**
+   - Verifica la instalación:
+     ```bash
+     docker --version
+     docker-compose --version
+     ```
+
 2. **Instalar Visual Studio Code y la Extensión Remote - Containers:**
 
-	- Descarga VS Code: [Visual Studio Code](https://code.visualstudio.com/)
-	- Instala la extensión **Remote - Containers** desde el Marketplace de VS Code.
+   - Descarga VS Code en [Visual Studio Code](https://code.visualstudio.com/).
+   - Instala la extensión **Remote - Containers** desde el Marketplace de VS Code.
 
-### 5.2. Creación del Dockerfile Seguro
+---
 
-Crea un archivo llamado `Dockerfile` en la raíz del proyecto con el siguiente contenido:
+### Creación del Dockerfile Seguro (Ya se encuentra en este repo creado)
 
-### 5.3. Configuración de VS Code Remote Containers
+Crea un archivo llamado `Dockerfile` en la raíz del proyecto con el contenido adecuado para definir tu imagen base y las configuraciones de seguridad necesarias.
 
-Crea el archivo `.devcontainer/devcontainer.json` en el directorio raíz del proyecto:
+---
 
-### Configuración con Docker Compose
+### Configuración de VS Code Remote Containers (Ya se encuentra en este repo creado)
 
-Si el entorno requiere múltiples contenedores para simular una red de microservicios, crea un archivo `docker-compose.yml`:
+Crea el archivo `.devcontainer/devcontainer.json` en el directorio raíz del proyecto. Este archivo define cómo se configura el entorno remoto en VS Code.
 
-### 5.5. Ejecución y Verificación
+---
 
-### **Construir y Ejecutar el Contenedor de Desarrollo:**
+### Configuración con Docker Compose (Ya se encuentra en este repo creado)
+
+Si el entorno requiere múltiples contenedores para simular una red de microservicios, crea un archivo `docker-compose.yml` en la raíz del proyecto para orquestar la comunicación entre ellos.
+
+---
+
+### Ejecución y Verificación
+
+#### Construir y Ejecutar el Contenedor de Desarrollo
+
+Utiliza los siguientes comandos para construir y levantar el contenedor:
+
 ```bash
 docker build -t liox-dev .
 docker run -d --name liox-dev-container -p 5000:5000 liox-dev
 ```
 
-### **Abrir el Proyecto en VS Code:**
+#### Abrir el Proyecto en VS Code
 
 - Abre VS Code y selecciona la opción **"Reopen in Container"** para cargar el entorno definido.
-```bash
-whoami
-```
-### **Validar Conexiones entre Microservicios:**
+- Verifica la sesión dentro del contenedor:
+  
+  ```bash
+  whoami
+  ```
 
-- Desde el contenedor de desarrollo, realiza peticiones HTTP o utiliza herramientas de línea de comandos (como `curl`) para verificar la comunicación entre microservicios y la base de datos.
+#### Validar Conexiones entre Microservicios
 
-# Flujo de Incorporación y Consumo del Entorno de Desarrollo
-
-La implementación presentada permite que un nuevo desarrollador se integre de forma rápida y sin discrepancias en el entorno de desarrollo. A continuación se detalla el flujo y el proceso:
+- Desde el contenedor, realiza peticiones HTTP o utiliza herramientas como `curl` para confirmar la comunicación entre microservicios y la base de datos.
 
 ---
 
-## 1. Clonación del Repositorio
+## Flujo de Incorporación y Consumo del Entorno
+
+La implementación permite que un nuevo desarrollador se integre rápidamente al entorno de desarrollo. A continuación se detalla el proceso:
+
+### Clonación del Repositorio
 
 - **Acción:**  
-  El nuevo desarrollador clona el repositorio del proyecto que contiene:
+  Clonar el repositorio que contiene:
   - El código fuente.
-  - El `Dockerfile` y, si se utiliza, el `docker-compose.yml`.
+  - El `Dockerfile` y, en su caso, el `docker-compose.yml`.
   - La carpeta `.devcontainer` con el archivo `devcontainer.json`.
 
 - **Resultado:**  
-  Se obtiene una copia local con todas las configuraciones necesarias para construir el entorno.
+  Se obtiene una copia local con todas las configuraciones necesarias.
 
 ---
 
-## 2. Instalación de Herramientas Requeridas
+### Instalación de Herramientas Requeridas
 
-- **Herramientas a Instalar:**
+- **Herramientas:**
   - **Docker:** (versión 20.10.x o superior).
-  - **Docker Compose:** (si el entorno usa múltiples contenedores).
+  - **Docker Compose:** (en caso de usar múltiples contenedores).
   - **Visual Studio Code:** Con la extensión **Remote - Containers** instalada.
 
 - **Resultado:**  
-  El desarrollador dispone de todas las herramientas necesarias para crear y acceder al entorno de desarrollo remoto.
+  El desarrollador dispone de todas las herramientas para crear y acceder al entorno remoto.
 
 - **Fuente:**  
-  [VS Code Remote Containers](https://code.visualstudio.com/docs/remote/containers) :contentReference[oaicite:0]{index=0}
+  [VS Code Remote Containers](https://code.visualstudio.com/docs/remote/containers)
 
 ---
 
-## 3. Carga del Entorno de Desarrollo
+### Carga del Entorno de Desarrollo
 
-- **Acción en VS Code:**
-  1. **Abrir el Proyecto:**  
-     El desarrollador abre el directorio del proyecto en VS Code.
-  2. **Detección del Archivo `.devcontainer`:**  
-     VS Code reconoce la carpeta `.devcontainer` y su configuración.
-  3. **Reapertura en Contenedor:**  
-     VS Code solicita “Reopen in Container” (Reabrir en contenedor). Al aceptarlo:
-     - Se construye la imagen utilizando el `Dockerfile` especificado.
-     - Se ejecutan comandos definidos en `postCreateCommand` (por ejemplo, la instalación de dependencias mediante `pip`).
-     - Se configura el entorno de desarrollo remoto, montando volúmenes y, de ser necesario, levantando servicios adicionales mediante Docker Compose.
+1. **Abrir el Proyecto:**
+   - Abre el directorio del proyecto en VS Code.
+2. **Detección Automática:**
+   - VS Code detecta la carpeta `.devcontainer` y su configuración.
+3. **Reapertura en Contenedor:**
+   - Selecciona “Reopen in Container” para:
+     - Construir la imagen a partir del `Dockerfile`.
+     - Ejecutar comandos definidos en `postCreateCommand` (por ejemplo, instalación de dependencias con `pip`).
+     - Configurar el entorno remoto, montando volúmenes y levantando servicios adicionales mediante Docker Compose si es necesario.
 
 - **Resultado:**  
-  El entorno de desarrollo se carga dentro de un contenedor Docker. VS Code se conecta a ese contenedor, proporcionando una experiencia integrada en la que el terminal, depurador y demás herramientas funcionan dentro del mismo entorno controlado.
+  El entorno de desarrollo se carga dentro de un contenedor Docker, permitiendo el uso integrado de terminal, depurador y demás herramientas.
 
 ---
 
-## 4. Consumo del Ambiente de Desarrollo
+### Consumo del Ambiente de Desarrollo
 
 - **Interacción del Desarrollador:**
-  - **Terminal y Shell:**  
-    El desarrollador utiliza el terminal integrado (configurado para usar Bash) para ejecutar comandos, correr scripts o interactuar con el sistema.
+  - **Terminal Integrado:**  
+    Ejecuta comandos, corre scripts o interactúa con el sistema mediante Bash.
   - **Ejecución y Depuración:**  
-    La aplicación se ejecuta dentro del contenedor, lo que permite realizar depuraciones y pruebas en un entorno idéntico al de producción (o testing).
-  - **Uso de Extensiones y Herramientas:**  
-    Las extensiones preconfiguradas (por ejemplo, para Python, Docker, ESLint y Prettier) están disponibles, asegurando que se sigan los estándares de codificación y buenas prácticas.
+    La aplicación se ejecuta en el contenedor, facilitando pruebas y depuraciones en un entorno idéntico al de producción.
+  - **Uso de Extensiones:**  
+    Las extensiones preconfiguradas (por ejemplo, para Python, Docker, ESLint y Prettier) aseguran el cumplimiento de estándares y buenas prácticas.
 
 - **Beneficios:**
   - **Consistencia:**  
-    Todos los desarrolladores trabajan con el mismo entorno, eliminando conflictos de dependencias o configuraciones locales.
+    Todos los desarrolladores utilizan el mismo entorno, evitando conflictos de dependencias.
   - **Seguridad:**  
     La configuración del contenedor, con usuario no privilegiado y prácticas de seguridad, minimiza riesgos.
   - **Escalabilidad:**  
-    La misma configuración se puede replicar en pipelines CI/CD y en otros entornos (como testing o producción).
+    La misma configuración puede replicarse en pipelines CI/CD o en otros entornos (testing, producción).
 
 - **Fuente:**  
-  [Documentación de Docker y VS Code Remote Containers](https://docs.docker.com/engine/reference/builder/) :contentReference[oaicite:1]{index=1}
+  [Documentación de Docker y VS Code Remote Containers](https://docs.docker.com/engine/reference/builder/)
 
 ---
 
-# Flujo Resumido del Proceso de Implementación
-
-A continuación se presenta un paso a paso que integra la implementación inicial y la incorporación del nuevo microservicio (en este caso, el microservicio Flask):
+## Flujo Resumido del Proceso de Implementación
 
 1. **Clonar el Repositorio:**  
-   El desarrollador clona el repositorio que contiene la configuración del entorno (Dockerfile, `.devcontainer/devcontainer.json`, `docker-compose.yml`) y el código del microservicio.
+   - Clona el repositorio que contiene la configuración del entorno (Dockerfile, `.devcontainer/devcontainer.json`, `docker-compose.yml`) y el código del microservicio.
 
 2. **Instalar Herramientas Requeridas:**  
-   Se aseguran tener instalados Docker, Docker Compose y Visual Studio Code con la extensión _Remote - Containers_.
+   - Asegúrate de tener Docker, Docker Compose y VS Code con la extensión _Remote - Containers_ instalados.
 
 3. **Abrir el Proyecto en VS Code:**  
-   Al abrir el directorio del proyecto, VS Code detecta la carpeta `.devcontainer` y propone la opción "Reopen in Container".
+   - Al abrir el directorio del proyecto, VS Code detectará la carpeta `.devcontainer` y sugerirá “Reopen in Container”.
 
 4. **Construir y Levantar el Entorno:**  
-   - VS Code utiliza el `Dockerfile` para construir la imagen base del entorno.
+   - VS Code utiliza el `Dockerfile` para construir la imagen base.
    - Si se usa Docker Compose, se orquestan múltiples contenedores (por ejemplo, el microservicio Flask y una base de datos).
-   - Se ejecuta el comando `postCreateCommand` para instalar las dependencias definidas.
+   - Se ejecuta el comando `postCreateCommand` para instalar dependencias.
 
 5. **Ejecución del Microservicio:**  
-   El microservicio Flask se inicia dentro de su contenedor, exponiendo el puerto configurado (por ejemplo, 5000).
+   - El microservicio Flask se inicia dentro de su contenedor, exponiendo el puerto configurado (por ejemplo, 5000).
 
 6. **Interacción del Desarrollador:**  
-   El desarrollador utiliza el entorno remoto para:
-   - Ejecutar y depurar el microservicio.
-   - Interactuar con el terminal integrado y utilizar las extensiones preconfiguradas.
-   - Realizar pruebas y validar la comunicación entre servicios (si existen otros microservicios o bases de datos).
+   - Utiliza el entorno remoto para ejecutar, depurar y probar el microservicio, asegurando la comunicación correcta entre servicios.
