@@ -1,1 +1,19 @@
+{
+  "name": "Entorno Seguro Acme Dev",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "microservice-flask",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "security.workspace.trust.untrustedFiles": "open"
+  },
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "ms-python.python",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+  ],
+  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
+  "remoteUser": "devuser"
+}
 
