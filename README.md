@@ -187,7 +187,7 @@ La implementación permite que un nuevo desarrollador se integre rápidamente al
 4. **Construir y Levantar el Entorno:**  
    - VS Code utiliza el `Dockerfile` para construir la imagen base.
    - Si se usa Docker Compose, se orquestan múltiples contenedores (por ejemplo, el microservicio Flask y una base de datos).
-   - Se ejecuta el comando `postCreateCommand` para instalar dependencias.
+   - Se ejecuta el comando `postCreateCommand` para instalar dependencias. (Lo hace de forma automatica)
 
 5. **Ejecución del Microservicio:**  
    - El microservicio Flask se inicia dentro de su contenedor, exponiendo el puerto configurado (por ejemplo, 5000).
