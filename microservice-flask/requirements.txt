@@ -1,1 +1,2 @@
-
+#microservice-flask/requirements.txt
+Flask==2.2.2
