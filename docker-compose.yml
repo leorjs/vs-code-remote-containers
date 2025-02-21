@@ -1,1 +1,35 @@
+version: '3.8'
+services:
+  microservice-flask:
+    build:
+      context: ./microservice-flask
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=database
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=dbname
+    networks:
+      - devnet
+    depends_on:
+      - database
 
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - devnet
+
+networks:
+  devnet:
+    driver: bridge
+
+volumes:
+  db_data:
