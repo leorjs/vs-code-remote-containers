@@ -1,5 +1,5 @@
 {
-  "name": "Entorno Seguro Acme Dev",
+  "name": "Entorno container Dev",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "microservice-flask",
   "workspaceFolder": "/workspace",
