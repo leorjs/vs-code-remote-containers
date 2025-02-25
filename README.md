@@ -75,17 +75,6 @@ Si el entorno requiere múltiples contenedores para simular una red de microserv
 
 ---
 
-### Ejecución y Verificación
-
-#### Construir y Ejecutar el Contenedor de Desarrollo
-
-Utiliza los siguientes comandos para construir y levantar el contenedor:
-
-```bash
-docker build -t liox-dev .
-docker run -d --name liox-dev-container -p 5000:5000 liox-dev
-```
-
 #### Abrir el Proyecto en VS Code
 
 - Abre VS Code y selecciona la opción **"Reopen in Container"** para cargar el entorno definido.
@@ -118,21 +107,6 @@ La implementación permite que un nuevo desarrollador se integre rápidamente al
 
 ---
 
-### Instalación de Herramientas Requeridas
-
-- **Herramientas:**
-  - **Docker:** (versión 20.10.x o superior).
-  - **Docker Compose:** (en caso de usar múltiples contenedores).
-  - **Visual Studio Code:** Con la extensión **Remote - Containers** instalada.
-
-- **Resultado:**  
-  El desarrollador dispone de todas las herramientas para crear y acceder al entorno remoto.
-
-- **Fuente:**  
-  [VS Code Remote Containers](https://code.visualstudio.com/docs/remote/containers)
-
----
-
 ### Carga del Entorno de Desarrollo
 
 1. **Abrir el Proyecto:**
@@ -149,16 +123,6 @@ La implementación permite que un nuevo desarrollador se integre rápidamente al
   El entorno de desarrollo se carga dentro de un contenedor Docker, permitiendo el uso integrado de terminal, depurador y demás herramientas.
 
 ---
-
-### Consumo del Ambiente de Desarrollo
-
-- **Interacción del Desarrollador:**
-  - **Terminal Integrado:**  
-    Ejecuta comandos, corre scripts o interactúa con el sistema mediante Bash.
-  - **Ejecución y Depuración:**  
-    La aplicación se ejecuta en el contenedor, facilitando pruebas y depuraciones en un entorno idéntico al de producción.
-  - **Uso de Extensiones:**  
-    Las extensiones preconfiguradas (por ejemplo, para Python, Docker, ESLint y Prettier) aseguran el cumplimiento de estándares y buenas prácticas.
 
 - **Beneficios:**
   - **Consistencia:**  
